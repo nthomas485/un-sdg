@@ -36,6 +36,7 @@
 <body>
   <div id="demo">
     <h1>un-sdg</h1>
+    <button id="random">Random</button>
     <un-sdg goal="1"></un-sdg>
     <un-sdg goal="2"></un-sdg>
     <un-sdg goal="3"></un-sdg>
@@ -49,6 +50,9 @@
     <un-sdg id="example" title="Sample property title"></un-sdg>
   </div>
   <script type="module" src="./src/un-sdg.js"></script>
+  <script> document.querySelector('#random').addEventListener('click', () => {
+    var randomNum= Math.floor(Math.random() * 17) + 1;})
+  </script>
 
   <!-- Take HAX, the Web and you further down the rabbit hole -->
   <style>

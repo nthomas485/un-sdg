@@ -36,8 +36,8 @@ export class unSdg extends DDDSuper(LitElement) {
     this.label = "";
     this.colorOnly = false;
     this.alt = null;
-    this.height = "254px";
-    this.width = "254px";
+    this.height = "254px"; //default height
+    this.width = "254px"; //default width
     this.lazy = true;
     this.fetchPriority = "low";
   }
@@ -58,6 +58,7 @@ export class unSdg extends DDDSuper(LitElement) {
     };
   }
 
+  //styling for the component
   static get styles() {
     return [super.styles,
     css`
@@ -68,8 +69,7 @@ export class unSdg extends DDDSuper(LitElement) {
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
         font-size: var(--un-sdg-font-size, var(--ddd-font-size-s));
-        //width: 254px;
-        //height: 254px;
+        // all colors stored
         background-color: none;
         --sdg-color-1: rgb(235,28,34);
         --sdg-color-2: rgb(210,160,42);
@@ -89,6 +89,7 @@ export class unSdg extends DDDSuper(LitElement) {
         --sdg-color-16: rgb(1,85,138);
         --sdg-color-17: rgb(25,54,103);
       }
+      // using host to set the colors based off whichever goal it is
       :host([goal="1"]){
         --sdg-color-1: rgb(235,28,34);
       }
@@ -141,6 +142,7 @@ export class unSdg extends DDDSuper(LitElement) {
         --sdg-color-17: rgb(25,54,103);
       }
 
+      //spacing for component
       .wrapper {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
@@ -152,7 +154,7 @@ export class unSdg extends DDDSuper(LitElement) {
       .image {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: contain; //scales to fit
       }
       .colorOnly {
         width: 100%;
@@ -161,35 +163,38 @@ export class unSdg extends DDDSuper(LitElement) {
     `];
   }
 
+  //returns the HTML for the component
   render() {
     return html`
     <style> 
       :host{
         --width: ${this.width};
         --height: ${this.height};
-      }
+      } 
     </style>
 <div class="wrapper"
-style="background-color: var(--goal-${this.goal});">
+style="background-color: var(--goal-${this.goal});"> <!-- sets background color--> 
   <div>${this.title}</div>
+  <!-- if not color only sets image -->
   ${this.colorOnly ? `` : html`
-  <img src="${this.image}"
-  alt = "${this.label}"
+  <img src="${this.image}" 
+  alt = "${this.label}" 
   loading = "${this.lazy ? "lazy" : "eager"}"
   width = ${this.width}
   height = ${this.height}
   fetchPriority = ${this.fetchPriority}
   > `} 
   <slot></slot>
-</div>`;
+</div>`; 
   }
 
-  // update label, image, and color within switch statement
+  // updates label, image, and color according to each goal
   addressAssign() {
     if (this.goal != 'all' && this.goal != 'circle'){
        this.image = new URL(`../lib/svgs/goal-${this.goal}.svg`, import.meta.url).href;
     }
     var currentGoal = this.goal
+    //switch statement to handle each number
     switch (currentGoal) {
       case "circle":
       this.label = "Sustainable developments logo";
@@ -208,7 +213,7 @@ style="background-color: var(--goal-${this.goal});">
       case "3": 
         this.label = "Goal 3: Good health and well-being";
       break;
-      case"4": 
+      case "4": 
         this.label = "Goal 4: Quality education";
       break;
       case "5":
@@ -261,6 +266,7 @@ style="background-color: var(--goal-${this.goal});">
     }
   }
 
+  //updates image and alt text based on the goal
   updateGoalImage() {
     if (this.goal === 'all' || this.goal === 'circle') {
       this.image = new URL(
@@ -287,7 +293,7 @@ style="background-color: var(--goal-${this.goal});">
    * haxProperties integration via file reference
    */
   static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
+    return new URL(`../lib/${this.tag}.haxProperties.json`, import.meta.url)
       .href;
   }
 }
