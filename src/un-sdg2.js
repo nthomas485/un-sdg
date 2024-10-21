@@ -2,26 +2,6 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 //new URL('../lib/svgs/goal-1.svg', import.meta.url).href
 
-const goalData = [
-  { name: 'No Poverty', color: '#e5243b' },
-  { name: 'Zero Hunger', color: '#dda63a' },
-  { name: 'Good Health and Well-being', color: '#4c9f38' },
-  { name: 'Quality Education', color: '#c5192d' },
-  { name: 'Gender Equality', color: '#ff3a21' },
-  { name: 'Clean Water and Sanitation', color: '#26bde2' },
-  { name: 'Affordable and Clean Energy', color: '#fcc30b' },
-  { name: 'Decent Work and Economic Growth', color: '#a21942' },
-  { name: 'Industry, Innovation and Infrastructure', color: '#fd6925' },
-  { name: 'Reduced Inequalities', color: '#dd1367' },
-  { name: 'Sustainable Cities and Communities', color: '#fd9d24' },
-  { name: 'Responsible Consumption and Production', color: '#bf8b2e' },
-  { name: 'Climate Action', color: '#3f7e44' },
-  { name: 'Life Below Water', color: '#0a97d9' },
-  { name: 'Life on Land', color: '#56c02b' },
-  { name: 'Peace, Justice and Strong Institutions', color: '#00689d' },
-  { name: 'Partnerships for the Goals', color: '#19486a' },
-];
-
 export class unSdg extends DDDSuper(LitElement) {
 
   static get tag() {
