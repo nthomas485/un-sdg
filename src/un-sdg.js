@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 
 class unSdg extends LitElement {
+    //where properties are defined but not used yet
     static get properties() {
         return {
             title: { type: String },
@@ -16,9 +17,9 @@ class unSdg extends LitElement {
             width: { type: String },
         };
     }
+    //initializes properties
     constructor() {
         super();
-        this.title = "";
         this.image = "";
         this.goal = "circle";
         this.label = "";
@@ -36,7 +37,6 @@ class unSdg extends LitElement {
         return css`
       // host declares for css
       :host {
-        // all colors stored
         background-color: none;
       }
 
@@ -50,13 +50,15 @@ class unSdg extends LitElement {
         object-fit: contain; //scales to fit
       }
       .wrapper{
+        //set default or custom width and height using css
         width: var(--width, 254px);
         height: var(--height, 254px);
-        background-color: var(--goal-color);
+        background-color: var(--goal-color); //background color depends on the specific goal
       }
     `;
     }
 
+    //when any properties change this runs
     updated(changeProperties) {
         if (changeProperties.has('goal')) {
             this.addressAssign();
@@ -64,7 +66,7 @@ class unSdg extends LitElement {
     }
 
 
-    // updates label, image, and color according to each goal
+    // updates label, image, and color within each case for simplicity
     addressAssign() {
         if (this.goal != 'all' && this.goal != 'circle') {
             this.image = new URL(`../lib/svgs/goal-${this.goal}.svg`, import.meta.url).href;
@@ -151,10 +153,11 @@ class unSdg extends LitElement {
         }
     }
 
+    //returns the HTML for the component
     render() {
         return html`
     <div class="wrapper" style="background-color: ${this.color};">
-        ${!this.colorOnly
+        ${!this.colorOnly // shorthand boolean so if colorOnly is false it displays image and if true only the colored wrapper is shown
                 ? html`<img src="${this.image}" 
                 alt="${this.label}" 
                 loading="${this.lazy ? "lazy" : "eager"}"
