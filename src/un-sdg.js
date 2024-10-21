@@ -49,11 +49,9 @@ class unSdg extends LitElement {
         height: 100%;
         object-fit: contain; //scales to fit
       }
-      .wrapper{
-        //set default or custom width and height using css
-        width: var(--width, 254px);
-        height: var(--height, 254px);
-        background-color: var(--goal-color); //background color depends on the specific goal
+      .wrapper{ 
+        width: 254px;
+        height: 254px;
       }
     `;
     }
